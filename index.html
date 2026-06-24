@@ -92,9 +92,11 @@
   .eyebrow::before{content:"";width:42px;height:2px;background:var(--lime)}
   h1{
     font-family:var(--black);
-    font-size:clamp(46px,8vw,104px);
+    font-size:clamp(34px,8vw,104px);
     line-height:.92;letter-spacing:-.01em;
     text-transform:uppercase;margin-bottom:8px;
+    overflow-wrap:break-word;word-break:break-word;hyphens:none;
+    max-width:100%;
   }
   h1 .em{color:var(--lime)}
   .hero-sub{
@@ -320,6 +322,24 @@
     section{padding:64px 0}
     .hero{padding:68px 0 60px}
     .hero-actions{gap:12px}
+
+    /* --- mobile-only centering (laptop unchanged) --- */
+    .eyebrow,.sec-label{justify-content:center;text-align:center}
+    .eyebrow::before,.sec-label::before{display:none}
+    .hero h1,.hero-sub{text-align:center}
+    .hero-meta,.hero-actions{justify-content:center}
+    .laab-acronym{justify-content:center;text-align:center}
+    .laab-acronym i{display:none}
+    .why h2,.why p.lead{text-align:center}
+    .why p.lead{margin-left:auto;margin-right:auto}
+    .col-included>h2,.col-journey>h2{text-align:center}
+    .plans h2,.apply-section h2{text-align:center}
+    .plan{text-align:center}
+    .plan .ptag,.plan .price-note{text-align:center}
+    .plan .pname{text-align:center}
+    .plan.highlight::before{left:50%;transform:translateX(-50%)}
+    .apply-copy p{text-align:center;margin-left:auto;margin-right:auto}
+    .apply-copy .reassure{text-align:left}
   }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto !important;transition:none !important}
