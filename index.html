@@ -51,12 +51,12 @@
     backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
   }
-  .bar{display:flex;align-items:center;justify-content:space-between;height:86px}
-  .lockup{display:flex;align-items:center;gap:16px}
-  .lockup img.laab{height:38px}
-  .lockup img.m3{height:52px}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:118px}
+  .lockup{display:flex;align-items:center;gap:22px}
+  .lockup img.laab{height:64px}
+  .lockup img.m3{height:88px}
   .lockup .x{
-    font-family:var(--display);font-weight:700;font-size:28px;
+    font-family:var(--display);font-weight:700;font-size:40px;
     color:var(--lime);letter-spacing:.04em;
   }
   .nav-cta{
@@ -136,41 +136,66 @@
   .why{background:var(--navy-deep)}
   .laab-acronym{
     display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 26px;
-    font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,34px);
+    font-family:var(--display);font-weight:800;font-size:clamp(19px,2.4vw,28px);
     text-transform:uppercase;letter-spacing:.02em;
   }
   .laab-acronym span{color:var(--lime)}
   .laab-acronym i{font-style:normal;color:var(--slate-light);margin:0 4px}
   .why p.lead{font-size:20px;max-width:680px;color:#D5DBE6}
 
-  /* ---------------- WHAT (program grid) ---------------- */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;background:var(--line)}
-  .card{
-    background:var(--navy);padding:34px 28px;position:relative;
-    transition:background .2s ease;
+  /* ---------------- WHAT (two columns: included + journey) ---------------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:8px;align-items:start}
+
+  /* LEFT — what's included list */
+  .incl-list{list-style:none;margin-top:34px;display:flex;flex-direction:column;gap:4px}
+  .incl-list li{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:18px 0 18px 18px;border-bottom:1px solid var(--line);position:relative;
   }
-  .card:hover{background:#172a4a}
-  .card .n{
-    font-family:var(--display);font-weight:700;font-size:15px;color:var(--lime);
-    letter-spacing:.1em;margin-bottom:16px;
+  .incl-list li::before{
+    content:"";position:absolute;left:0;top:21px;width:3px;height:16px;background:var(--lime);
   }
-  .card h3{
+  .incl-list li:last-child{border-bottom:none}
+  .incl-list h3{
     font-family:var(--display);font-weight:700;text-transform:uppercase;
-    font-size:23px;line-height:1.05;letter-spacing:.01em;margin-bottom:10px;
+    font-size:19px;line-height:1.1;letter-spacing:.01em;margin-bottom:5px;color:var(--cream);
   }
-  .card p{font-size:15.5px;color:var(--slate-light);line-height:1.55}
-  .card.feature{
-    grid-column:span 3;background:var(--navy-deep);
-    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
-    border-left:3px solid var(--lime);
+  .incl-list p{font-size:15px;color:var(--slate-light);line-height:1.5}
+  .incl-highlight{
+    background:rgba(207,225,66,.07);
+    margin-top:8px;border-bottom:none !important;border-radius:2px;
   }
-  .card.feature .ftxt{flex:1;min-width:260px}
-  .card.feature h3{font-size:26px;margin-bottom:6px}
-  .card.feature p{color:#C7D0DE;font-size:16.5px}
-  .card.feature .tag{
-    font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-    font-size:13px;color:var(--navy-deep);background:var(--lime);padding:7px 14px;border-radius:2px;
+  .incl-highlight::before{width:4px;height:calc(100% - 36px)}
+  .incl-highlight h3{color:var(--lime)}
+
+  /* RIGHT — the journey timeline */
+  .timeline{margin-top:34px;position:relative;padding-left:30px}
+  .timeline::before{
+    content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;
+    background:linear-gradient(var(--lime),rgba(207,225,66,.25));
   }
+  .phase{position:relative;padding:0 0 34px 0}
+  .phase:last-child{padding-bottom:0}
+  .phase::before{
+    content:"";position:absolute;left:-30px;top:5px;width:12px;height:12px;border-radius:50%;
+    background:var(--navy);border:2px solid var(--lime);
+  }
+  .phase-final::before{background:var(--lime)}
+  .phase-day{
+    font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+    font-size:14px;color:var(--lime);margin-bottom:8px;
+  }
+  .phase h3{
+    font-family:var(--display);font-weight:700;text-transform:uppercase;
+    font-size:23px;line-height:1.05;letter-spacing:.01em;margin-bottom:9px;color:var(--cream);
+  }
+  .phase p{font-size:15.5px;color:#C7D0DE;line-height:1.55;margin-bottom:6px}
+  .phase p.phase-note{font-size:14.5px;color:var(--slate-light);font-style:italic}
+  .phase-final{
+    background:var(--navy-deep);border-left:3px solid var(--lime);
+    padding:22px 22px 22px 22px;border-radius:3px;margin-left:-4px;
+  }
+  .phase-final::before{left:-30px;top:27px}
 
   /* ---------------- PLANS ---------------- */
   .plans{background:var(--cream);color:var(--navy)}
@@ -275,20 +300,22 @@
 
   /* ---------------- RESPONSIVE ---------------- */
   @media(max-width:880px){
-    .grid{grid-template-columns:1fr 1fr}
+    .two-col{grid-template-columns:1fr;gap:48px}
     .plan-grid{grid-template-columns:1fr}
     .m3-inner{grid-template-columns:1fr;gap:34px}
     .apply-grid{grid-template-columns:1fr;gap:36px}
-    .card.feature{grid-column:span 2}
+    .bar{height:96px}
+    .lockup img.laab{height:50px}.lockup img.m3{height:68px}
+    .lockup .x{font-size:30px}
   }
   @media(max-width:560px){
     body{font-size:16px}
     .wrap{padding:0 20px}
-    .bar{height:72px}
-    .lockup img.laab{height:30px}.lockup img.m3{height:40px}
-    .nav-cta{padding:9px 14px;font-size:13px}
-    .grid{grid-template-columns:1fr}
-    .card.feature{grid-column:span 1;flex-direction:column;align-items:flex-start}
+    .bar{height:74px}
+    .lockup{gap:10px}
+    .lockup img.laab{height:34px}.lockup img.m3{height:46px}
+    .lockup .x{font-size:22px}
+    .nav-cta{padding:9px 14px;font-size:12px;white-space:nowrap}
     .row2{grid-template-columns:1fr}
     section{padding:64px 0}
     .hero{padding:68px 0 60px}
@@ -340,12 +367,12 @@
 <!-- WHY -->
 <section class="why">
   <div class="wrap">
-    <div class="sec-label">Why LAAB × M3</div>
-    <h2>More than a camp</h2>
+    <div class="sec-label">Why LAAB × M3?</div>
+    <h2>We didn't bring a camp.<br>We brought Spain.</h2>
     <div class="laab-acronym">
-      <span>Learn.</span><i>/</i><span>Apply.</span><i>/</i><span>Advance.</span><i>/</i><span>Belong.</span>
+      <span>The same methodology.</span><i>/</i><span>The same standards.</span><i>/</i><span>The same culture.</span>
     </div>
-    <p class="lead">An international high-performance experience designed to raise the standard of padel in Egypt — built on the same system that develops elite players in Spain.</p>
+    <p class="lead">For one week, Egyptian players will experience the exact high-performance environment that develops some of the world's best padel athletes — without leaving home.</p>
   </div>
 </section>
 
@@ -354,46 +381,62 @@
 <!-- WHAT -->
 <section class="what">
   <div class="wrap">
-    <div class="sec-label">What will happen</div>
-    <h2>The week, on court</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="n">01</div>
-        <h3>M3 Spanish Methodology</h3>
-        <p>Train under one of Spain's leading high-performance padel systems.</p>
+    <div class="two-col">
+
+      <!-- LEFT: What's included -->
+      <div class="col-included">
+        <div class="sec-label">What's included</div>
+        <h2>What happens<br>during the week</h2>
+        <ul class="incl-list">
+          <li>
+            <div><h3>M3 Spanish Methodology</h3><p>Train under one of Spain's leading high-performance padel systems.</p></div>
+          </li>
+          <li>
+            <div><h3>Train with Spanish Players</h3><p>Share the court and compete alongside players travelling from Spain.</p></div>
+          </li>
+          <li>
+            <div><h3>Daily Padel Sessions</h3><p>Two 90-minute Spanish coaching sessions every day.</p></div>
+          </li>
+          <li>
+            <div><h3>Daily Physical Sessions</h3><p>Padel-specific strength, speed, mobility and recovery training.</p></div>
+          </li>
+          <li>
+            <div><h3>Performance Mindset Sessions</h3><p>Develop the habits and mentality of elite athletes.</p></div>
+          </li>
+          <li>
+            <div><h3>Coach Certification</h3><p>Official M3 L1 methodology program for coaches.</p></div>
+          </li>
+          <li class="incl-highlight">
+            <div><h3>Spain vs Egypt Exhibition Match</h3><p>A finale bringing together Spain's No. 1 U18 players and Egypt's top talent.</p></div>
+          </li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="n">02</div>
-        <h3>Train with Spanish Players</h3>
-        <p>Share the court and compete alongside players travelling in from Spain.</p>
-      </div>
-      <div class="card">
-        <div class="n">03</div>
-        <h3>Daily Padel Sessions</h3>
-        <p>Two sessions of 90 minutes each, with Spanish coaching, over five days.</p>
-      </div>
-      <div class="card">
-        <div class="n">04</div>
-        <h3>Daily Physical Sessions</h3>
-        <p>One 60-minute session daily — padel-specific strength, speed, mobility and recovery, for five days.</p>
-      </div>
-      <div class="card">
-        <div class="n">05</div>
-        <h3>Mental Sessions</h3>
-        <p>Develop the habits and mentality of elite athletes.</p>
-      </div>
-      <div class="card">
-        <div class="n">06</div>
-        <h3>Coach Certification</h3>
-        <p>Two days of the official M3 methodology program for coaches (L1 course). On-ground and online content provided.</p>
-      </div>
-      <div class="card feature">
-        <div class="ftxt">
-          <h3>Spain vs Egypt Exhibition Match</h3>
-          <p>Spain's No. 1 U18 players take on the top Egyptian players on the final day.</p>
+
+      <!-- RIGHT: The journey -->
+      <div class="col-journey">
+        <div class="sec-label">How the week unfolds</div>
+        <h2>The journey</h2>
+        <div class="timeline">
+          <div class="phase">
+            <div class="phase-day">Day 1–2</div>
+            <h3>Coach Certification</h3>
+            <p>Official M3 L1 methodology led by elite Spanish coaches.</p>
+            <p class="phase-note">For coaches looking to learn an international development system.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-day">Day 3–7</div>
+            <h3>High Performance Camp</h3>
+            <p>Daily technical, tactical, physical and mindset training.</p>
+            <p class="phase-note">Train alongside Spanish players in a complete high-performance environment.</p>
+          </div>
+          <div class="phase phase-final">
+            <div class="phase-day">Final Day</div>
+            <h3>Spain vs Egypt Exhibition</h3>
+            <p>Spain's No. 1 U18 players take on Egypt's top-ranked players in a landmark match that celebrates a new standard for Egyptian padel.</p>
+          </div>
         </div>
-        <span class="tag">Final day</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -411,18 +454,18 @@
         <div class="price-note">Early-bird rate · limited slots</div>
         <button class="apply" data-plan="Early bird training program — 24,000 EGP">Apply</button>
       </div>
-      <div class="plan">
+      <div class="plan highlight">
         <div class="ptag">International</div>
         <div class="pname">International Players<br>Training Program</div>
         <div class="price">$690</div>
-        <div class="price-note">For players travelling in</div>
+        <div class="price-note">Early-bird rate · limited slots</div>
         <button class="apply" data-plan="International players training program — $690">Apply</button>
       </div>
-      <div class="plan">
+      <div class="plan highlight">
         <div class="ptag">Coaches</div>
         <div class="pname">L1 Coaching<br>Certification</div>
         <div class="price">35,000 <small>EGP</small></div>
-        <div class="price-note">Official M3 methodology · L1</div>
+        <div class="price-note">Early-bird rate · limited slots</div>
         <button class="apply" data-plan="L1 coaching certification — 35,000 EGP">Apply</button>
       </div>
     </div>
